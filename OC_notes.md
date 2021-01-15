@@ -58,3 +58,64 @@ NSLog(@"jack f1= %f", f1);	//
    6. SEL 方法选择器
    7. block 代码段
 
+
+
+类是模板，对象是根据模板创建的，绝对不多不少。
+
+设计三要素：名字、特征、行为
+
+```objective-c
+/*
+类是模板，对象是根据模板创建的，绝对不多不少。
+设计三要素：名字、特征、行为
+
+类
+_____________
+｜属性				｜
+｜					 ｜
+｜__________｜
+｜方法				｜
+｜					 ｜
+｜					 ｜
+｜__________｜
+
+
+类的定义分为两个部分：
+
+->类的声明
+@interface 类名：NSObject{
+	共同特征定义的变量->属性
+}
+方法的声明
+@end
+
+->类的实现
+@implementation 类名
+方法的实现
+@end
+
+*/
+
+//类名首字母大写
+//属性以下划线开头
+
+@interface Person : NSObject{
+  NSString *_name;
+  int _age;
+  float _height;
+}
+@end
+  
+@implementation Person
+@end
+  
+  
+//创建类的对象:类名 *对象名=[类名 new]
+Person *p1 = [Person new];
+//默认情况下对象属性不允许被外界访问，否则加@public声明
+@public
+NSString *_name;
+p1->_name=@"jack";
+(*p1)._name=@"jack";
+```
+

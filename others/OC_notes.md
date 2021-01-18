@@ -99,23 +99,44 @@ _____________
 //类名首字母大写
 //属性以下划线开头
 
+#import <Foundation/Foundation.h>
+
 @interface Person : NSObject{
   NSString *_name;
   int _age;
   float _height;
 }
+//方法声明：-（类型）名称
+	- (void)run;
+	- (void)eatWith:(NSString *)foodName;
+  - (int)sum:(int)num1 :(int)num2;
+//- (int)sumWith:(int)num1 and:(int)num2;
+//- (int)sumWithNum1:(int)num1 andNum2:(int)num2;
 @end
   
+//方法实现
 @implementation Person
+	- (void)run{
+	}
+  - (void)eatWith:(NSString *)foodName{
+  }
+  - (int)sum:(int)num1 :(int)num2{
+    
+  }
 @end
   
-  
-//创建类的对象:类名 *对象名=[类名 new]
-Person *p1 = [Person new];
-//默认情况下对象属性不允许被外界访问，否则加@public声明
-@public
-NSString *_name;
-p1->_name=@"jack";
-(*p1)._name=@"jack";
+int main(int argc, const char * argv[]){
+  //创建类的对象:类名 *对象名=[类名 new]
+  Person *p1 = [Person new];
+  //默认情况下对象属性不允许被外界访问，否则加@public声明
+  @public
+  NSString *_name;
+  p1->_name=@"jack";
+  (*p1)._name=@"jack";
+  //调用方法
+	[p1 run];
+  [p1 eatWith:@"红烧排骨"];
+  int sum=[p1 sum:10 :20];
+}
 ```
 

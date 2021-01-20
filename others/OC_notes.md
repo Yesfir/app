@@ -96,8 +96,8 @@ _____________
 
 */
 
-//类名首字母大写
-//属性以下划线开头
+//类名首字母大写!
+//属性以下划线开头!
 
 #import <Foundation/Foundation.h>
 
@@ -140,3 +140,56 @@ int main(int argc, const char * argv[]){
 }
 ```
 
+
+
+内存五大区域：
+
+栈：局部变量
+
+堆：malloc, calloc, realloc
+
+BSS段：未被初始化的全局变量、静态变量
+
+数据段（常量区）：已被初始化的全局变量、静态变量、常量
+
+代码段：程序代码
+
+
+
+类加载
+
+当某个类第一次被访问到，会将类存储到代码段，程序结束才被释放
+
+Person *p1，在栈中申请Person类型指针变量
+
+[Person new]：在堆中申请空间，根据类模板创建对象、声明属性(0, NULL, nil)，isa指针指向代码段，返回地址给p1指针
+
+对象中只有属性没有方法，属性+isa指针
+
+
+
+分组导航标记
+
+```objective-c
+#pragma mark 狗狗类的声明
+#pragma mark -
+#pragma mark - 分组名
+```
+
+
+
+多文件开发
+
+推荐一个类独占一个模块: NewFile -> Cocoa Class
+
+一个模块至少包含两个文件：.h头文件（类的声明）+.m实现文件（类的实现）
+
+```objective-c
+main.m: #import "Person.h"
+Person.h: #import <foundation/Foundation.h>
+Person.m: #import "Person.h"
+```
+
+
+
+类的本质是自定义数据类型，可以作为方法的参数

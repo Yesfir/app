@@ -190,6 +190,39 @@ Person.h: #import <foundation/Foundation.h>
 Person.m: #import "Person.h"
 ```
 
+头文件定义通用结构，例如
+
+```objective-c
+// Gender _gender;
+typedef enum{
+  GenderMale;
+  GenderFeMale;
+} Gender;
+```
+
 
 
 类的本质是自定义数据类型，可以作为方法的参数
+
+形参也在栈中开辟了空间，内容同实参
+
+对象也可以作为方法的返回值，返回值类型为类指针
+
+
+
+如果一个对象的属性是另一个对象的指针，并不是对象！！（用不了方法，改不了属性
+
+需要新建一个对象，将该指针指向该对象
+
+
+
+```objective-c
+rewind(stdin);
+scanf("%d",&userSelect);
+//类的方法中调用当前对象另一方法，self代表当前对象
+[self fistTypeWithNumber:userSelect];
+
+#import <stdlib.h>
+int x=arc4random_uniform(3)+1;
+```
+

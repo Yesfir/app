@@ -107,22 +107,21 @@ _____________
   float _height;
 }
 //方法声明：-（类型）名称
-	- (void)run;
-	- (void)eatWith:(NSString *)foodName;
-  - (int)sum:(int)num1 :(int)num2;
+- (void)run;
+- (void)eatWith:(NSString *)foodName;
+- (int)sum:(int)num1 :(int)num2;
 //- (int)sumWith:(int)num1 and:(int)num2;
 //- (int)sumWithNum1:(int)num1 andNum2:(int)num2;
 @end
   
 //方法实现
 @implementation Person
-	- (void)run{
-	}
-  - (void)eatWith:(NSString *)foodName{
-  }
-  - (int)sum:(int)num1 :(int)num2{
-    
-  }
+- (void)run{
+}
+- (void)eatWith:(NSString *)foodName{
+}
+- (int)sum:(int)num1 :(int)num2{
+}
 @end
   
 int main(int argc, const char * argv[]){
@@ -224,5 +223,113 @@ scanf("%d",&userSelect);
 
 #import <stdlib.h>
 int x=arc4random_uniform(3)+1;
+
+#import <math.h>
+double z=sqrt(x+y);
+```
+
+
+
+```objective-c
+/*异常处理
+目的：异常而不崩溃
+语法：try catch (finally)
+将有可能异常的代码放在@try中，异常时会跳转到@catch
+*/
+@try{}
+@catch(NSException *ex){
+  NSLog(@"%@",ex);				//%@打印指针对象，异常原因
+}
+@finally{
+  
+}
+//避免异常最常用还是逻辑判断
+```
+
+
+
+```objective-c
+// OC中的方法：对象/实例方法<->类方法：
+// 声明实现：只有加减号不一样
+- (void)sayHi;
++ (void)sayHi;
+//调用：[类名 类方法名];
+//类方法规范：提供同名类方法，创建返回
+@interface Person:NSObject{
+  
+}
++ (Person *)person;
++ (person *)personWithName:(NSString *)name;
+@end
+@implementation{
+  + (Person *)person{
+    Person *p1=[Person new];
+    return p1;
+  }
+}
+@end
+```
+
+
+
+```objective-c
+//NSString类
+NSString *str0=[NSString new];
+NSString *str1=[NSString string];
+NSString *str2=[NSString stringWithForm:@"jack"];
+NSString *str=@"jack";
+//常用类方法
++ (instanceType)stringWithUTF8String:(const char *)nullTerminatedCString;
+char *str0="rose";
+NSString *str1=[NSStringWithUTF8String:str0];
+//instanceType 作为返回值，代表返回的是当前类的对象，将C字符串转换为OC字符串对象，用途：接收scanf等
++ (instanceType)stringWithFormat:(NSString *)foramt;
+NSString *name=@"xiaoming";
+NSString *s=[NSString stringWithFormat:@"大家好，我叫%@",name];
+//常用对象方法
+NSString *str=@"Yesfir";
+NSUInteger len=[str length];	//%lu
+- (unichar)characterAtIndex:(NSUinterger)index; //%c, unichar中文输出%C
+unichar ch=[str characterAtIndex:2];
+//判断相同不要用==
+BOOL com=[str1 isEqualToString:str2];
+//比较字符串大小
+NSComparisonResult res = [str1 compare:str2];	//可以用int,-1小于
+```
+
+
+
+匿名对象：没有指针指向这个对象
+
+[[Person new] sayHi];
+
+面向对象三大特征：封装、继承、多态
+
+
+
+```objective-c
+/*属性的逻辑验证
+1. 不能写public，不然外界可以直接访问属性，任意赋值
+2. 为类提供方法setter，专门为属性赋值
+	a. 这个方法一定是对象方法
+	b. 无返回值
+	c. 方法名称以set开头跟上属性去下划线首字母大写
+	d. 一定有参数，类型与属性参数一致，名称与属性去下划线
+	e. 在方法实现中逻辑验证
+	f. 外界赋值则调用对象的setter方法
+*/
+@interface Person:NSObject{
+  int _age;
+}
+- (void)setAge:(int age);
+@end
+  
+@implementation
+- (void)setAge:(int)age{
+if (age>=0 && age<=200){
+  _age=age;}
+  else{_age=18;}
+}
+@end
 ```
 
